@@ -1,0 +1,43 @@
+{
+  "name": "maps-demo-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1",
+    "@turf/bbox": "^6.0.1",
+    "axios": "^0.18.0",
+    "deck.gl": "^7.0.3",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-map-gl": "^4.1.2",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.0",
+    "react-semantic-ui": "^0.2.0",
+    "reactstrap": "^8.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.86.0",
+    "viewport-mercator-project": "^6.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
