@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapGL, { NavigationControl, Marker, Popup } from "react-map-gl";
+import ReactMapGL, { NavigationControl, Marker } from "react-map-gl";
 import { getOutlets } from "../../services/serviceOutlets";
 import LocationPin from "../mapHelpers/LocationPin";
 const navStyle = {
@@ -57,16 +57,23 @@ export default class MapGL extends Component {
   render() {
     const { viewport, places } = this.state;
     return (
-      <ReactMapGL
-        {...viewport}
-        height={600}
-        width={550}
-        onViewportChange={viewport => this.setState({ viewport })}
-        mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
-      >
-        {places &&
-          places.map((place, index) => this._renderMarker(place, index))}
-      </ReactMapGL>
+      <div className="container">
+        <div className="row justify-content-center">
+          <ReactMapGL
+            {...viewport}
+            height={600}
+            width={"100%"}
+            onViewportChange={viewport => this._updateViewport(viewport)}
+            mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
+          >
+            {places &&
+              places.map((place, index) => this._renderMarker(place, index))}
+            <div className="nav" style={navStyle}>
+              <NavigationControl onViewportChange={this._updateViewport} />
+            </div>
+          </ReactMapGL>
+        </div>
+      </div>
     );
   }
 }

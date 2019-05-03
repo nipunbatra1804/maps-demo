@@ -86,7 +86,7 @@ export default class MapGL extends Component {
                 {...viewport}
                 height={600}
                 width={1018}
-                onViewportChange={viewport => this.setState({ viewport })}
+                onViewportChange={viewport => this._updateViewport(viewport)}
                 mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
               >
                 {places &&
@@ -94,6 +94,9 @@ export default class MapGL extends Component {
                     this._renderMarker(place, index)
                   )}
                 {this._renderPopup()}
+                <div className="nav" style={navStyle}>
+                  <NavigationControl onViewportChange={this._updateViewport} />
+                </div>
               </ReactMapGL>
             </div>
           </Col>

@@ -188,24 +188,28 @@ export default class MapDeckGL extends Component {
   }
 
   render() {
-    const { viewport, towns, places } = this.state;
+    const { viewport, towns, places } = this.state
     return (
-      <ReactMapGL
-        {...viewport}
-        height={600}
-        width={550}
-        onViewportChange={viewport => this._updateViewport(viewport)}
-        mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
-      >
-        {this._renderNeighborhood(towns, viewport)}
-        {this._renderTownPopup()}
-        {places &&
-          places.map((place, index) => this._renderMarker(place, index))}
-        {/* {popUp && this._displayPopup(popUp)} */}
-        <div className="nav" style={navStyle}>
-          <NavigationControl onViewportChange={this._updateViewport} />
+      <div className="container">
+        <div className="row justify-content-center">
+          <ReactMapGL
+            {...viewport}
+            height={600}
+            width={"100%"}
+            onViewportChange={viewport => this._updateViewport(viewport)}
+            mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
+          >
+            {this._renderNeighborhood(towns, viewport)}
+            {this._renderTownPopup()}
+            {places &&
+              places.map((place, index) => this._renderMarker(place, index))}
+            {/* {popUp && this._displayPopup(popUp)} */}
+            <div className="nav" style={navStyle}>
+              <NavigationControl onViewportChange={this._updateViewport} />
+            </div>
+          </ReactMapGL>
         </div>
-      </ReactMapGL>
+      </div>
     );
   }
 }

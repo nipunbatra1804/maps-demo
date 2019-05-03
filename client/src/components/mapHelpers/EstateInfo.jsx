@@ -15,6 +15,7 @@ export default function EstateInfo(props) {
       <img
         src={`https://s3-ap-southeast-1.amazonaws.com/hyperlocusimages/${id}.jpg`}
         style={{ width: "256px", height: "256px" }}
+        alt="estateInfo"
       />
     </div>
   );
