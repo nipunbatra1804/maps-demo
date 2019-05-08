@@ -18,9 +18,8 @@ function shuffle(a) {
 export async function getOutlets() {
   try {
     const outlets = await hyperlocusApi.get("/places");
-    console.log(outlets.data);
     let data = outlets.data.filter(elem => !!elem.location);
-    data = shuffle(data).slice(1, 400);
+    data = shuffle(data).slice(1, 50);
     data = data.map(elem => {
       elem.properties = {};
       elem.properties.name = elem.name;
@@ -62,10 +61,10 @@ export async function createOutlet(outlet, id) {
 }
 
 export async function getOutlet(id) {
-  console.log(id);
+
   try {
     const foodOutlets = await hyperlocusApi.get(`/places/${id}`);
-    console.log(foodOutlets.data);
+   
     let data = [foodOutlets.data];
     data = data.filter(elem => !!elem.location);
     data = data.map(elem => {
@@ -88,7 +87,6 @@ export async function getOutlet(id) {
 }
 
 export async function getOutletByTown(id) {
-  console.log(id);
   try {
     const outlets = await hyperlocusApi.get(`/estateinfo/${id}`);
     let data = outlets.data.filter(elem => !!elem.location);
@@ -113,7 +111,6 @@ export async function getOutletByTown(id) {
 
 try {
     const outlets = await hyperlocusApi.get("/places");
-    console.log(outlets.data);
     let data = outlets.data.filter(elem => !!elem.location);
     data = shuffle(data).slice(1, 400);
     data = data.map(elem => {

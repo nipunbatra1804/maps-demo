@@ -100,12 +100,12 @@ export default class MapDeckGL extends Component {
   _onClickTown = async (info, town) => {
     const [minLng, minLat, maxLng, maxLat] = bbox(town.location);
     const viewport = new WebMercatorViewport(this.state.viewport);
-    console.log(viewport.zoom);
+
     const { longitude, latitude, zoom } = viewport.fitBounds(
       [[minLng, minLat], [maxLng, maxLat]],
       { padding: 40 }
     );
-    console.log(zoom);
+
     const places = await getOutletByTown(town.id);
     this.setState({
       viewport: {
@@ -117,29 +117,6 @@ export default class MapDeckGL extends Component {
       places: places
     });
   };
-
-  _renderTownPopup = () => {
-    const { popupTown } = this.state;
-    if (!popupTown) {
-      return;
-    }
-    const { town, info } = popupTown;
-    return (
-      popupTown && (
-        <Popup
-          tipSize={5}
-          anchor="top"
-          longitude={info.coordinate[0]}
-          latitude={info.coordinate[1]}
-          closeOnClick={true}
-          onClose={() => this.setState({ popupTown: null })}
-        >
-          <EstateInfo name={town.name} address={"Singapore"} id={town.id} />
-        </Popup>
-      )
-    );
-  };
-
   _getLayer = town => {
     return new GeoJsonLayer({
       id: `geojson-layer-${town.name}`,
@@ -178,7 +155,7 @@ export default class MapDeckGL extends Component {
   async componentDidMount() {
     try {
       const towns = await getTowns();
-      console.log(towns);
+
       this.setState({
         towns: [...towns]
       });
@@ -188,7 +165,7 @@ export default class MapDeckGL extends Component {
   }
 
   render() {
-    const { viewport, towns, places } = this.state
+    const { viewport, towns, places } = this.state;
     return (
       <div className="container">
         <div className="row justify-content-center">
@@ -200,7 +177,7 @@ export default class MapDeckGL extends Component {
             mapboxApiAccessToken={`${process.env.REACT_APP_MAPBOX_API_KEY}`}
           >
             {this._renderNeighborhood(towns, viewport)}
-            {this._renderTownPopup()}
+            {/* {this._renderTownPopup()} */}
             {places &&
               places.map((place, index) => this._renderMarker(place, index))}
             {/* {popUp && this._displayPopup(popUp)} */}

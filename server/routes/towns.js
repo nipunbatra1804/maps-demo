@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.route("/").get(async (req, res) => {
   const { location } = req.body;
-  console.log(req.body);
   if (!location) {
     const towns = await Estate.findAll({});
     return res.json(towns);

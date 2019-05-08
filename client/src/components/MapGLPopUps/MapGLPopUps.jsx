@@ -65,7 +65,7 @@ export default class MapGL extends Component {
   async componentDidMount() {
     try {
       const places = await getOutlets();
-      console.log(places);
+    
       this.setState({
         places: [...places]
       });

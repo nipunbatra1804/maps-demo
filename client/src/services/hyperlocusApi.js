@@ -6,7 +6,7 @@ const protocol = window.location.protocol;
 const url = isValidHost(host)
   ? `${protocol}//${hosts[window.location.host]}`
   : "";
-console.log(url);
+
 const hyperlocusApi = axios.create({
   baseURL: url,
   withCredentials: true

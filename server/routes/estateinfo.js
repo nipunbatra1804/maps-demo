@@ -4,11 +4,9 @@ const Sequelize = require("sequelize");
 const { Place, sequelize, Estate } = require("../models");
 
 router.route("/").get(async (req, res) => {
-  console.log(req.body.id);
   const town = await Estate.findOne({
     where: { id: req.body.id }
   });
-  console.log(town.location.type);
   //return res.sendStatus(200);
   if (!town) {
     return res.status(415).json({ err: "Unable to find estate" });
@@ -28,11 +26,9 @@ router.route("/").get(async (req, res) => {
 });
 
 router.route("/:id").get(async (req, res) => {
-  console.log(req.params.id);
   const town = await Estate.findOne({
     where: { id: req.params.id }
   });
-  console.log(town);
   if (!town) {
     return res.status(415).json({ err: "Unable to find estate" });
   }
@@ -51,13 +47,11 @@ router.route("/:id").get(async (req, res) => {
 });
 
 router.route("/:id/:category").get(async (req, res) => {
-  console.log(req.params.id);
   let { category } = req.params;
   const Op = Sequelize.Op;
   const town = await Estate.findOne({
     where: { id: req.params.id }
   });
-  console.log(town);
   if (!town) {
     return res.status(415).json({ err: "Unable to find estate" });
   }

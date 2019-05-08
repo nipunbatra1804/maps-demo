@@ -1,5 +1,5 @@
 import React from "react";
-
+import hulk from "../../HappyHulk.ico";
 const pinStyle = {
   cursor: "pointer",
   fill: "#d00",
@@ -34,3 +34,8 @@ export default function LocationPin(props) {
     />
   );
 }
+
+/*
+
+
+*/
